@@ -44,16 +44,14 @@ struct Alignment {
     T eps;
     std::vector<std::pair<T, T>> alignment;
     kaldi::int32 distance;
-
-    Alignment(const std::vector<T>& a, const std::vector<T>& b, T eps) : eps(eps) {
-        alignment.reserve(std::max(a.size(), b.size()));
-        distance = kaldi::LevenshteinAlignment(a, b, eps, &alignment);
-    }
 };
 
 template <class T>
 Alignment<T> align(const std::vector<T>& a, const std::vector<T>& b, T eps) {
-    return {a, b, eps};
+    Alignment<T> ret = {eps};
+    ret.alignment.reserve(std::max(a.size(), b.size()));
+    ret.distance = kaldi::LevenshteinAlignment(a, b, eps, &ret.alignment);
+    return ret;
 }
 
 
@@ -82,15 +80,13 @@ PYBIND11_MODULE(kaldi_edit_distance, m) {
           py::arg("a"), py::arg("b"), py::arg("eps"));
 
     py::class_<Alignment<std::int64_t>>(m, "IntAlignment", "alignment in Levelshtein edit distance")
-        .def(py::init<const std::vector<std::int64_t>&, const std::vector<std::int64_t>&, std::int64_t>(),
-             "calculate alignment", py::arg("a"), py::arg("b"), py::arg("eps"))
+        .def(py::init<>())
         .def_readwrite("alignment", &Alignment<std::int64_t>::alignment)
         .def_readwrite("eps", &Alignment<std::int64_t>::eps);
 
 
     py::class_<Alignment<std::string>>(m, "StrAlignment", "alignment in Levelshtein edit distance")
-        .def(py::init<const std::vector<std::string>&, const std::vector<std::string>&, std::string>(),
-             "calculate alignment", py::arg("a"), py::arg("b"), py::arg("eps"))
+        .def(py::init<>())
         .def_readwrite("alignment", &Alignment<std::string>::alignment)
         .def_readwrite("eps", &Alignment<std::string>::eps);
 }

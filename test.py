@@ -24,3 +24,5 @@ assert e2.ref_num == 6
 
 a2 = ke.align(list("kitten"), list("sitting"), eps="<eps>")
 assert a2.alignment == [('k', 's'), ('i', 'i'), ('t', 't'), ('t', 't'), ('e', 'i'), ('n', 'n'), ('<eps>', 'g')]
+
+print("OK")
