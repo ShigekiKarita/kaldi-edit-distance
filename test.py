@@ -15,12 +15,12 @@ assert a.alignment == [(0, 0), (0, 0), (1, 1), (0, -1), (3, 3), (4, 5)]
 
 
 # str edit distance
-e2 = ke.edit_distance("kitten", "sitting")
+e2 = ke.edit_distance(list("kitten"), list("sitting"))
 assert e2.distance == 3
 assert e2.ins_num == 1
 assert e2.del_num == 0
 assert e2.sub_num == 2
 assert e2.ref_num == 6
 
-a2 = ke.align("kitten", "sitting", eps="<eps>")
+a2 = ke.align(list("kitten"), list("sitting"), eps="<eps>")
 assert a2.alignment == [('k', 's'), ('i', 'i'), ('t', 't'), ('t', 't'), ('e', 'i'), ('n', 'n'), ('<eps>', 'g')]
