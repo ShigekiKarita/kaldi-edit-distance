@@ -153,9 +153,12 @@ def main():
 
         s += "|" + "=" * width + "|\n"
 
-        # FIXME: S.D. is not matched?
         import numpy
-        for name, func in [("Mean", numpy.mean), ("S.D.", numpy.std), ("Median", numpy.median)]:
+        def std1(xs):
+            # NOTE: sclite uses ddof=1
+            # https://github.com/usnistgov/SCTK/blob/master/src/sclite/statdist.c#L593
+            return numpy.std(xs, ddof=1)
+        for name, func in [("Mean", numpy.mean), ("S.D.", std1), ("Median", numpy.median)]:
             s += "| " + name.ljust(name_width) + "|"
             n_sents = numpy.array([v for v in spkr_sent.values()])
             m = func(n_sents)
