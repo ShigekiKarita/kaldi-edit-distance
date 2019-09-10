@@ -108,6 +108,10 @@ setup(
     ext_modules=ext_modules,
     install_requires=['pybind11>=2.2'],
     setup_requires=['pybind11>=2.2'],
+    packages=["ked_tools"],
     cmdclass={'build_ext': BuildExt},
     zip_safe=False,
+    entry_points = {
+        'console_scripts': ['sclite.py=ked_tools.sclite:main'],
+    }
 )

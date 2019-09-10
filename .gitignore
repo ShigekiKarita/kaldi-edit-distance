@@ -1,5 +1,8 @@
 *
 
+!source
+!test
+!ked_tools
 !*.cpp
 !*.h
 !*.py
