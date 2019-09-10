@@ -198,11 +198,11 @@ def main():
 
 
 
-    print("\n\n\n                     SYSTEM SUMMARY PERCENTAGES by SPEAKER                      ")
+    print("\n\n\n                     SYSTEM SUMMARY PERCENTAGES by SPEAKER                      \n")
 
     table(rate=True)
 
-    print("\n\n\n                     SYSTEM SUMMARY PERCENTAGES by SPEAKER                      ")
+    print("\n\n\n                     SYSTEM SUMMARY PERCENTAGES by SPEAKER                      \n")
 
     table(rate=False)
 
@@ -210,16 +210,16 @@ def main():
 
     print("\nSystem name:   " + args.hyp[0])
 
-    print("\nSpeakers:")
+    print("\nSpeakers: ")
 
     for i, k in enumerate(spkr_stats):
-        print(f"{i:5d}:   {k}")
+        print(f"{i:5d}:  {k}")
 
     print("")
 
     # alignment
     for i, (spk, ali_dict) in enumerate(spkr_ali.items()):
-        print(f"Speaker sentences {i:5d}:  " + spk + f"   #utts: {len(ali_dict)}")
+        print(f"Speaker sentences   {i}:  " + spk + f"   #utts: {len(ali_dict)}")
         for utt, ali in ali_dict.items():
             print(f"id: ({utt})")
             st = all_stats[utt]
@@ -237,13 +237,13 @@ def main():
                     ev.append("".ljust(pad))
                 elif r == eps:
                     pad = len(h)
-                    rs.append("*".ljust(pad))
+                    rs.append("*" * pad)
                     hs.append(h.upper().ljust(pad))
                     ev.append("I".ljust(pad))
                 elif h == eps:
                     pad = len(r)
                     rs.append(r.upper().ljust(pad))
-                    hs.append("*".ljust(pad))
+                    hs.append("*" * pad)
                     ev.append("D".ljust(pad))
                 else:
                     pad = max(len(r), len(h))
@@ -251,12 +251,11 @@ def main():
                     hs.append(h.upper().ljust(pad))
                     ev.append("S".ljust(pad))
 
-            print("REF:  " + " ".join(rs))
-            print("HYP:  " + " ".join(hs))
-            print("Eval: " + " ".join(ev))
-            print("\n")
+            print("REF:  " + " ".join(rs) + " ")
+            print("HYP:  " + " ".join(hs) + " ")
+            print("Eval: " + " ".join(ev) + " ")
+            print("")
 
 
 if __name__ == "__main__":
     main()
-

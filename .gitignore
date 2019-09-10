@@ -6,6 +6,8 @@
 !*.cpp
 !*.h
 !*.py
+!*.txt
+!*.trn
 !.gitignore
 !README.md
 !LICENSE
