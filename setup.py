@@ -24,7 +24,7 @@ class get_pybind_include(object):
 ext_modules = [
     Extension(
         'kaldi_edit_distance',
-        ['kaldi_edit_distance.cpp'],
+        ['source/kaldi_edit_distance.cpp'],
         include_dirs=[
             # Path to pybind11 headers
             get_pybind_include(),
