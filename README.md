@@ -153,6 +153,14 @@ Eval:
 ...
 ```
 
-## TODO
+## Diffs from original sclite
 
 - Corr is different becuase sclite and kaldi's alignment are different (see fjlp-fjlp-cen8-b in test/{result.txt,expect.txt})
+- Table format is slightly different from original sclite
+
+see [test/result.diff](test/result.diff) for actual diff created by
+```bash
+sclite -r ./test/ref.trn trn -h ./test/hyp.trn trn -i rm -o all stdout > expect.txt
+sclite.py -r ./test/ref.trn trn -h ./test/hyp.trn trn -i rm -o all stdout > actual.txt
+diff expect.txt actual.txt
+```
