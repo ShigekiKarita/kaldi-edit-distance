@@ -113,7 +113,12 @@ class Sclite:
         name_width = max(max(map(len, self.spkr_stats.keys())), len("Sum/Avg"))
         value_width = int(math.log10(max(self.total_stats.distance, self.total_stats.ref_num))) + 2  # for xxx.y
         value_width = max(value_width, header_width) + 1
-        width = max(len(self.name) + 2, 5 + name_width + len(header) * (value_width))
+
+        margin_file_width = len(self.name) + 2
+        margin_value_width = 5 + name_width + len(header) * (value_width)
+        width = max(margin_file_width, margin_value_width)
+        if margin_file_width > margin_value_width:
+            name_width += margin_file_width - margin_value_width
 
         # filename
         s = "," + "-" * width + ".\n"
@@ -155,7 +160,10 @@ class Sclite:
         s += "|" + "=" * width + "|\n"
 
         # sum
-        s += "| " + "Sum".ljust(name_width)
+        if rate:
+            s += "| " + "Sum/Avg".ljust(name_width)
+        else:
+            s += "| " + "Sum".ljust(name_width)
         total = self.total(rate=rate)
         s += "|" + f"{total['# Snt']}".rjust(value_width) + f"{total['# Wrd']}".rjust(value_width)
         s += " |"
