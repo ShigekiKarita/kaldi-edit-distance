@@ -155,5 +155,4 @@ Eval:
 
 ## TODO
 
-- check sclite and kaldi's alignment difference (see fjlp-fjlp-cen8-b in test/{result.txt,expect.txt})
-- check sclite S.D. result. it is different from numpy.std
+- Corr is different becuase sclite and kaldi's alignment are different (see fjlp-fjlp-cen8-b in test/{result.txt,expect.txt})
