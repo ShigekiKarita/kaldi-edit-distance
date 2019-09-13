@@ -12,10 +12,10 @@ def load_trn(path):
     ret = dict()
     with open(path) as f:
         for line in f:
-            # line looks like: "O N E <space> F I F T Y (fjlp-fjlp-cen3-b)"
-            xs = line.strip().split()
-            key = xs[-1][1:-1]  # remove paren
-            ret[key] = xs[:-1]
+            # line looks like: "O N E <space> F I F T Y(fjlp-fjlp-cen3-b)"
+            key = line.strip().split('(')[-1][:-1]
+            xs = line.strip()[:-len(key)-2].strip().split()
+            ret[key] = xs
     return ret
 
 
